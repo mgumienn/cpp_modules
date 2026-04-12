@@ -9,7 +9,6 @@ class Phone_Book
 	private:
 		Contact contacts[8];
 		int contact_count;
-		int oldest_index;
 	public:
 		Phone_Book();
 		void phone_book_add();

@@ -1,5 +1,17 @@
 #include "phonebook.hpp"
 
+bool phone_number_verification(std::string phone_number)
+{
+	for(int i = 0; phone_number[i]; i++)
+	{
+		char c = phone_number[i];
+
+		if (!isdigit(c) && (i != 0 && c == '+'))
+			return (false);
+	}
+	return (true);
+}
+
 Phone_Book::Phone_Book() : contact_count(0)
 {
 
@@ -24,6 +36,10 @@ void Phone_Book::phone_book_add()
 		|| darkest_secret.empty())
 	{
 		std::cout << "ERROR: empty lines in contact!" << std::endl;
+	}
+	else if (!phone_number_verification(phone_number))
+	{
+		std::cout << "ERROR: incorrect phone number" <<std::endl;
 	}
 	else
 	{
