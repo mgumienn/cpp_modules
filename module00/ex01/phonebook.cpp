@@ -38,12 +38,24 @@ void Phone_Book::phone_book_add()
 		std::cout << "ERROR: empty lines in contact!" << std::endl;
 	}
 	else if (!phone_number_verification(phone_number))
-	{
 		std::cout << "ERROR: incorrect phone number" <<std::endl;
-	}
 	else
 	{
 		contacts[contact_count % 8 ].set_contact(first_name, last_name, nickname, phone_number, darkest_secret);
 		contact_count++;
 	}
+}
+
+
+void Phone_Book::phonebook_search()
+{
+	std::cout << "|" << std::setw(10) << "INDEX" << "|";
+	std::cout << std::setw(10) << "FIRST NAME" << "|";
+	std::cout << std::setw(10) << "LAST NAME" << "|";
+	std::cout << std::setw(10) << "NICKNAME" << "|" << std::endl;
+	std::cout << "---------------------------------------------" << std::endl;
+
+	for (int i = 0; i < contact_count; i++)
+		contacts[i].show_contact_short(i);
+	std::cout << "---------------------------------------------" << std::endl;	
 }

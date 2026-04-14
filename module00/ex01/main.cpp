@@ -8,18 +8,24 @@ int main(void)
 
 	while (true)
 	{
-		std::cout << "--->	Enter a command (ADD, SEARCH, EXIT)	<---" << std::endl;
+		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
 		if (!std::getline(std::cin, command))
 		{
 			std::cout << "\nEOF detected, Exiting..." << std::endl;
+			return 0;
 		}
+		std::cout << "\n";
 		if (command == "ADD")
+		{
 			phone_book.phone_book_add();
+			std::cout << "\n";
+		}
 		else if (command == "EXIT")
 			break;
-		else
+		else if (command == "SEARCH")
 		{
-			std::cout << command << ": command not found" << std::endl;
+			phone_book.phonebook_search();
+			std::cout << "\n";
 		}
 	}
 	return 0;

@@ -12,7 +12,7 @@ class Phone_Book
 	public:
 		Phone_Book();
 		void phone_book_add();
-		
+		void phonebook_search();	
 };
 
 #endif
