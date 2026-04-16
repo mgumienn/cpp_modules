@@ -1,5 +1,43 @@
 #include "phonebook.hpp"
 
+int ft_stoi(std::string str)
+{
+	int	i;
+	int	n;
+	int	sign;
+
+	i = 0;
+	n = 0;
+	sign = 1;
+	while ((str[i] <= '\r' && str[i] >= '\t') || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		n = n * 10 + (str[i] - 48);
+		i++;
+	}
+	return (n * sign);
+
+}
+
+bool is_positive_nbr(std::string str)
+{
+	if (str.empty())
+		return false;
+	for (int i = 0; str[i]; i++)
+	{
+		if (!isdigit(str[i]))
+			return false;
+	}
+	return true;
+}
+
 bool phone_number_verification(std::string phone_number)
 {
 	for(int i = 0; phone_number[i]; i++)
@@ -49,6 +87,12 @@ void Phone_Book::phone_book_add()
 
 void Phone_Book::phonebook_search()
 {
+	if (contact_count == 0)
+	{
+		std::cout << "Your phone book is empty :c";
+		return ;
+	}
+	std::string input;
 	std::cout << "|" << std::setw(10) << "INDEX" << "|";
 	std::cout << std::setw(10) << "FIRST NAME" << "|";
 	std::cout << std::setw(10) << "LAST NAME" << "|";
@@ -57,5 +101,24 @@ void Phone_Book::phonebook_search()
 
 	for (int i = 0; i < contact_count; i++)
 		contacts[i].show_contact_short(i);
-	std::cout << "---------------------------------------------" << std::endl;	
+	std::cout << "---------------------------------------------" << std::endl;
+	while (true)
+	{
+		std::cout << "\nEnter index number to display contact or EXIT to go back: ";
+		if (!std::getline(std::cin, input))
+		{
+			std::cout << "EOF detected, going back.." << std::endl;
+			return ;
+		}
+		else if (input == "EXIT")
+			return ;
+		else if (is_positive_nbr(input))
+		{
+			int i = ft_stoi(input);
+			if (i >= 0 && i < contact_count)
+				contacts[i].show_contact();
+			else
+				std::cout << "No contact with this index found" << std::endl;
+		}
+	}
 }
