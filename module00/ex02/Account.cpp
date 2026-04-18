@@ -76,8 +76,6 @@ void	Account::displayAccountsInfos( void )
 				<< std::endl;
 }
 
-
-//[19920104_091532] index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
 void	Account::makeDeposit( int deposit )
 {
 	Account::_nbDeposits++;
@@ -97,9 +95,6 @@ int		Account::checkAmount( void ) const
 	return this->_amount;
 }
 
-
-// [19920104_091532] index:0;p_amount:47;withdrawal:refused
-// [19920104_091532] index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
 bool	Account::makeWithdrawal( int withdrawal )
 {
 	Account::_displayTimestamp();
