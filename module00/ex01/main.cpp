@@ -3,7 +3,7 @@
 
 int main(void)
 {
-	Phone_Book phone_book;
+	PhoneBook phonebook;
 	std::string command;
 
 	while (true)
@@ -17,14 +17,14 @@ int main(void)
 		std::cout << "\n";
 		if (command == "ADD")
 		{
-			phone_book.phone_book_add();
+			phonebook.phonebook_add();
 			std::cout << "\n";
 		}
 		else if (command == "EXIT")
 			break;
 		else if (command == "SEARCH")
 		{
-			phone_book.phonebook_search();
+			phonebook.phonebook_search();
 			std::cout << "\n";
 		}
 	}

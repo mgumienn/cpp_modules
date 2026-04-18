@@ -50,12 +50,12 @@ bool phone_number_verification(std::string phone_number)
 	return (true);
 }
 
-Phone_Book::Phone_Book() : contact_count(0)
+PhoneBook::PhoneBook() : contact_count(0)
 {
 
 }
 
-void Phone_Book::phone_book_add()
+void PhoneBook::phonebook_add()
 {
 	std::string first_name, last_name, nickname, phone_number, darkest_secret;
 
@@ -85,7 +85,7 @@ void Phone_Book::phone_book_add()
 }
 
 
-void Phone_Book::phonebook_search()
+void PhoneBook::phonebook_search()
 {
 	if (contact_count == 0)
 	{
@@ -115,7 +115,7 @@ void Phone_Book::phonebook_search()
 		else if (is_positive_nbr(input))
 		{
 			int i = ft_stoi(input);
-			if (i >= 0 && i < contact_count)
+			if (i >= 0 && i < contact_count && i < 8)
 				contacts[i].show_contact();
 			else
 				std::cout << "No contact with this index found" << std::endl;
