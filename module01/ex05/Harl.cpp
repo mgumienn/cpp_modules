@@ -27,8 +27,9 @@ void Harl::complain( std::string level )
 {
 	void (Harl::*levels[])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string names[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
+	int size = sizeof(names) / sizeof(names[0]);
 
-	for (int i = 0; !(names[i].empty()); i++)
+	for (int i = 0; i < size; i++)
 	{
 		if (names[i] == level)
 			return (this->*levels[i])();

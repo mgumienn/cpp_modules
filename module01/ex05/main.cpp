@@ -3,7 +3,6 @@
 
 int main(void) 
 {
-	// "DEBUG", "INFO", "WARNING", "ERROR"
 	std::string level;
 	Harl harl;
 
