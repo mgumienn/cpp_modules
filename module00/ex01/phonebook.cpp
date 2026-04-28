@@ -44,7 +44,7 @@ bool phone_number_verification(std::string phone_number)
 	{
 		char c = phone_number[i];
 
-		if (!isdigit(c) && (i != 0 && c == '+'))
+		if (!isdigit(c) && c != '+')
 			return (false);
 	}
 	return (true);
@@ -99,7 +99,7 @@ void PhoneBook::phonebook_search()
 	std::cout << std::setw(10) << "NICKNAME" << "|" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 
-	for (int i = 0; i < contact_count; i++)
+	for (int i = 0; (i < contact_count && i < 8); i++)
 		contacts[i].show_contact_short(i);
 	std::cout << "---------------------------------------------" << std::endl;
 	while (true)
@@ -115,7 +115,7 @@ void PhoneBook::phonebook_search()
 		else if (is_positive_nbr(input))
 		{
 			int i = ft_stoi(input);
-			if (i >= 0 && i < contact_count && i < 8)
+			if (i >= 0 && (i < contact_count && i < 8) && i < 8)
 				contacts[i].show_contact();
 			else
 				std::cout << "No contact with this index found" << std::endl;
