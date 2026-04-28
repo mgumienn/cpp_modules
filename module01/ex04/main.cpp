@@ -55,3 +55,6 @@ int main(int argc, char **argv)
 	std::cout << "Result saved into: " << outFileName << std::endl;
 	return 0;
 }
+
+// FOR TESTING:
+// ./sed_is_for_losers test "[put witcher's name here]" "Geralt"
