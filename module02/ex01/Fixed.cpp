@@ -44,7 +44,7 @@ float Fixed::toFloat( void ) const
 {
 	float f_value;
 
-	f_value = this->rawValue / (1 << this->bits);
+	f_value = (float)this->rawValue / (1 << this->bits);
 	return (f_value);
 }
 
