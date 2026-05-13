@@ -2,17 +2,17 @@
 
 Weapon::Weapon(std::string type)
 {
-	Weapon::type = type;
+	Weapon::_type = type;
 }
 
 void Weapon::setType(std::string newType)
 {
-	Weapon::type = newType;
+	Weapon::_type = newType;
 }
 
 std::string& Weapon::getType()
 {
-	std::string& typeRef = Weapon::type;
+	std::string& typeRef = Weapon::_type;
 	return typeRef;
 }
 

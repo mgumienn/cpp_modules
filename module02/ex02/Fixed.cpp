@@ -5,32 +5,32 @@
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->rawValue = 0;
+	this->_rawValue = 0;
 }
 
 Fixed::Fixed(const Fixed &fixed)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->rawValue = fixed.rawValue;
+	this->_rawValue = fixed._rawValue;
 }
 
 Fixed::Fixed(const int int_Value)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->rawValue = int_Value * (1 << this->bits);
+	this->_rawValue = int_Value * (1 << this->_bits);
 }
 
 Fixed::Fixed(const float float_Value)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->rawValue = roundf(float_Value * (1 << this->bits));
+	this->_rawValue = roundf(float_Value * (1 << this->_bits));
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &fixed)
-		this->rawValue = fixed.rawValue;
+		this->_rawValue = fixed._rawValue;
 	return *this;
 }
 
@@ -44,62 +44,62 @@ float Fixed::toFloat( void ) const
 {
 	float f_value;
 
-	f_value = (float)this->rawValue / (1 << this->bits);
+	f_value = (float)this->_rawValue / (1 << this->_bits);
 	return (f_value);
 }
 
 int Fixed::toInt( void ) const
 {
-	return (this->rawValue >> 8);
+	return (this->_rawValue >> 8);
 }
 
 int Fixed::getRawBits( void )
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	return (this->rawValue);
+	return (this->_rawValue);
 }
 
 void Fixed::setRawBits( int const raw )
 {
 	std::cout << "setRawBits member function called" << std::endl;
-	this->rawValue = raw;
+	this->_rawValue = raw;
 }
 
 bool Fixed::operator<=(const Fixed &fixed) const
 {
-	return (this->rawValue <= fixed.rawValue);
+	return (this->_rawValue <= fixed._rawValue);
 }
 
 bool Fixed::operator>=(const Fixed &fixed) const
 {
-	return (this->rawValue >= fixed.rawValue);
+	return (this->_rawValue >= fixed._rawValue);
 }
 
 bool Fixed::operator==(const Fixed &fixed) const
 {
-	return (this->rawValue == fixed.rawValue);
+	return (this->_rawValue == fixed._rawValue);
 }
 
 bool Fixed::operator!=(const Fixed &fixed) const
 {
-	return (this->rawValue != fixed.rawValue);
+	return (this->_rawValue != fixed._rawValue);
 }
 
 bool Fixed::operator<(const Fixed &fixed) const
 {
-	return (this->rawValue < fixed.rawValue);
+	return (this->_rawValue < fixed._rawValue);
 }
 
 bool Fixed::operator>(const Fixed &fixed) const
 {
-	return (this->rawValue > fixed.rawValue);
+	return (this->_rawValue > fixed._rawValue);
 }
 
 Fixed Fixed::operator-(const Fixed &fixed) const
 {
 	Fixed result;
 
-	result.setRawBits(this->rawValue - fixed.rawValue);
+	result.setRawBits(this->_rawValue - fixed._rawValue);
 	return result;
 }
 
@@ -107,27 +107,27 @@ Fixed Fixed::operator+(const Fixed &fixed) const
 {
 	Fixed result;
 
-	result.setRawBits(this->rawValue + fixed.rawValue);
+	result.setRawBits(this->_rawValue + fixed._rawValue);
 	return result;
 }
 
 Fixed Fixed::operator*(const Fixed &fixed) const
 {
 	Fixed result;
-	float x = (float)this->rawValue / (1 << this->bits);
-	float y = (float)fixed.rawValue / (1 << fixed.bits);
+	float x = (float)this->_rawValue / (1 << this->_bits);
+	float y = (float)fixed._rawValue / (1 << fixed._bits);
 
-	result.setRawBits(roundf((x * y) * (1 << this->bits)));
+	result.setRawBits(roundf((x * y) * (1 << this->_bits)));
 	return result;
 }
 
 Fixed Fixed::operator/(const Fixed &fixed) const
 {
 	Fixed result;
-	float x = (float)this->rawValue / (1 << this->bits);
-	float y = (float)fixed.rawValue / (1 << fixed.bits);
+	float x = (float)this->_rawValue / (1 << this->_bits);
+	float y = (float)fixed._rawValue / (1 << fixed._bits);
 
-	result.setRawBits(roundf((x / y) * (1 << this->bits)));
+	result.setRawBits(roundf((x / y) * (1 << this->_bits)));
 	return result;
 }
 
@@ -135,27 +135,27 @@ Fixed Fixed::operator/(const Fixed &fixed) const
 Fixed Fixed::operator++(int)
 {
 	Fixed temp = *this;
-	this->rawValue++;
+	this->_rawValue++;
 	return temp;
 }
 
 //pre-incrementation
 Fixed &Fixed::operator++()
 {
-	this->rawValue++;
+	this->_rawValue++;
 	return *this;
 }
 
 Fixed Fixed::operator--(int)
 {
 	Fixed temp = *this;
-	this->rawValue--;
+	this->_rawValue--;
 	return temp;
 }
 
 Fixed &Fixed::operator--()
 {
-	this->rawValue--;
+	this->_rawValue--;
 	return *this;
 }
 

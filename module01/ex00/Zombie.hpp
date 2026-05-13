@@ -7,7 +7,7 @@ class Zombie
 {
 	private:
 		Zombie(void);
-		std::string name;
+		std::string _name;
 	public:
 		Zombie(std::string name);
 		void announce(void);

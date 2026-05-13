@@ -6,8 +6,8 @@
 class Fixed
 {
 private:
-	int rawValue;
-	static const int bits = 8;
+	int _rawValue;
+	static const int _bits = 8;
 public:
 	Fixed();
 	Fixed(const Fixed &fixed);
@@ -18,8 +18,9 @@ public:
 	float toFloat( void ) const;
 	int toInt( void ) const;
 	Fixed &operator=(const Fixed &fixed);
-	friend std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 	~Fixed();
 };
+
+std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 
 #endif
