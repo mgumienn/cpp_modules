@@ -4,9 +4,9 @@ ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "Default constructor for " << name << " called" << std::endl;
 	this->_name = name;
-	this->_hitPoints = 10;
-	this->_energyPoints = 10;
-	this->_attackDamage = 0;
+	this->setHitPoints(10);
+	this->setEnergyPoints(10);
+	this->setAttackDamage(0);
 }
 
 void ClapTrap::attack(const std::string& target)
@@ -42,6 +42,42 @@ void ClapTrap::beRepaired(unsigned int amount)
 	this->_energyPoints--;
 	std::cout << "ClapTrap " << this->_name << " repaired itself and got " << amount << " hit points and now has " << this->_hitPoints << " hit points." << std::endl;
 }
+
+unsigned int ClapTrap::getHitPoints() const
+{
+	return _hitPoints;
+}
+
+void ClapTrap::setHitPoints(unsigned int hp)
+{
+	_hitPoints = hp;
+}
+
+unsigned int ClapTrap::getEnergyPoints() const
+{
+	return _energyPoints;
+}
+
+void ClapTrap::setEnergyPoints(unsigned int ep)
+{
+	_energyPoints = ep;
+}
+
+unsigned int ClapTrap::getAttackDamage() const
+{
+	return _attackDamage;
+}
+
+void ClapTrap::setAttackDamage(unsigned int damage)
+{
+	_attackDamage = damage;
+}
+
+std::string ClapTrap::getName() const
+{
+	return _name;
+}
+
 
 ClapTrap::~ClapTrap()
 {
