@@ -1,62 +1,43 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(std::string name) : ClapTrap::ClapTrap(name)
+FragTrap::FragTrap(void) : ClapTrap("Default")
 {
-	std::cout << "New FragTrap " << name << " emerged" << std::endl;
-	this->setHitPoints(100);
-	this->setEnergyPoints(50);
-	this->setAttackDamage(20);
+	std::cout << "FragTrap default constructor called" << std::endl;
+	this->_hitPoints = 100;
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
 }
 
-void FragTrap::attack(const std::string& target)
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	unsigned int energyPoints = this->getEnergyPoints();
-	unsigned int hitPoints = this->getHitPoints();
-	std::string name = this->getName();
+	std::cout << "New FragTrap " << this->_name << " emerged" << std::endl;
+	this->_hitPoints = 100;
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
+}
 
-	if (hitPoints == 0 || energyPoints == 0)
+FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
+{
+	std::cout << "FragTrap copy constructor called" << std::endl;
+	*this = other;
+}
+
+FragTrap& FragTrap::operator=(const FragTrap& other)
+{
+	std::cout << "FragTrap copy assignment operator called" << std::endl;
+	if (this != &other)
 	{
-		std::cout << "FragTrap " << name << " can't do anything as it has no hit points or energy points left" << std::endl;
-		return;
+		ClapTrap::operator=(other);
 	}
-	std::cout << "FragTrap " << name << " attacks " << target;
-	std::cout << ", causing " << this->getAttackDamage() << " points of damage!" << std::endl;
-	this->setEnergyPoints(energyPoints - 1);
+	return *this;
 }
 
-void FragTrap::takeDamage(unsigned int amount)
+FragTrap::~FragTrap(void)
 {
-	unsigned int hitPoints = this->getHitPoints();
-
-	if (hitPoints < amount)
-		this->setHitPoints(0);
-	else
-		this->setHitPoints(hitPoints - amount);
-	std::cout << "FragTrap " <<  this->getName() << " took " << amount << " damage." << std::endl;
-	std::cout << "Now it has " << this->getHitPoints() << " hit points and " << this->getEnergyPoints() << " energy points." << std::endl;
-}
-
-void FragTrap::beRepaired(unsigned int amount)
-{
-	unsigned int energyPoints = this->getEnergyPoints();
-	unsigned int hitPoints = this->getHitPoints();
-	std::string name = this->getName();
-
-	if (hitPoints == 0 || energyPoints == 0)
-	{
-		std::cout << "FragTrap " << name << " can't do anything as it has no hit points or energy points left" << std::endl;
-		return;
-	}
-	this->setHitPoints(hitPoints + amount);
-	this->setEnergyPoints(energyPoints - 1);
-	std::cout << "FragTrap " << name << " repaired itself and got " << amount << " hit points and now has " << this->getHitPoints() << " hit points." << std::endl;
+	std::cout << "FragTrap destructor for " << this->_name << " called" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap " << this->getName() << ": Hey, let's high five, buddy!" << std::endl;
-}
-
-FragTrap::~FragTrap()
-{
+	std::cout << "FragTrap " << this->_name << ": Hey, let's high five, buddy!" << std::endl;
 }
